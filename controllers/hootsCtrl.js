@@ -23,7 +23,7 @@ const create = async (req, res) => {
 const index = async (req, res) => {
   try {
     const hoots = await Hoot.find().populate('author').sort({ createdAt: 'desc' });
-// sort createdAt as descending timestamps, because for example we want the users to see what is new in the application when they open it like Instagram
+
     res.status(200).json(hoots);
   } catch (error) {
     console.log(error.message);
@@ -34,7 +34,7 @@ const index = async (req, res) => {
 const show = async (req, res) => {
   try {
     const hoot = await Hoot.findById(req.params.id).populate('author');
-// we use populate to get the full object referencing the user rather than the raw ID of the author
+
     res.status(200).json(hoot);
   } catch (error) {
     console.log(error.message);
